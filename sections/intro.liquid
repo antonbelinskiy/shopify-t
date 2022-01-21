@@ -1,0 +1,138 @@
+<section class="intro-section" style="background-color: #F6F5F5;">
+    <div class="intro-section__background">
+        {% if section.settings.gradient != blank %}
+        <div class="intro-section__background-gradient">
+            <picture>
+                <source srcset="{{ section.settings.gradient | img_url: "master" }}" media="(min-width: 1440px)">
+                <img src="{{ section.settings.gradient | img_url: "master" }}" alt="{{ section.settings.gradient.alt }}">
+            </picture>
+        </div>
+        {% endif %}
+        {% if section.settings.wave != blank %}
+            <div class="intro-section__background-wave">
+                <picture>
+                    <source srcset="{{ section.settings.wave | img_url: "master" }}" media="(min-width: 1440px)">
+                    <img src="{{ section.settings.wave | img_url: "master" }}" alt="{{ section.settings.wave.alt }}">
+                </picture>
+            </div>
+        {% endif %}
+        {% if section.settings.wave != blank %}
+            <div class="intro-section__background-wave">
+                <picture>
+                    <source srcset="{{ section.settings.gradient | img_url: "master" }}" media="(min-width: 1440px)">
+                    <img src="{{ section.settings.gradient | img_url: "master" }}" alt="{{ section.settings.gradient.alt }}">
+                </picture>
+            </div>
+        {% endif %}
+        <div class="intro-section__product">
+            {% if section.settings.item-1 != blank %}
+                <div class="intro-section__product-first">
+                    <picture>
+                        <source srcset="{{ section.settings.item-1 | img_url:"master" }}">
+                        <img src="{{ section.settings.item-1 | img_url:"master" }}" alt="{{ section.settings.item-1.alt }}">
+                    </picture>
+                </div>
+            {% endif %}
+            {% if section.settings.item-2 != blank %}
+                <div class="intro-section__product-first">
+                    <picture>
+                        <source srcset="{{ section.settings.item-2 | img_url:"master" }}">
+                        <img src="{{ section.settings.item-2 | img_url:"master" }}" alt="{{ section.settings.item-2.alt }}">
+                    </picture>
+                </div>
+            {% endif %}
+            {% if section.settings.item-3 != blank %}
+                <div class="intro-section__product-first">
+                    <picture>
+                        <source srcset="{{ section.settings.item-3 | img_url:"master" }}">
+                        <img src="{{ section.settings.item-3 | img_url:"master" }}" alt="{{ section.settings.item-3.alt }}">
+                    </picture>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="intro-section__inner-wrapper" style="color: white;">
+            <div class="intro-section__top-line">
+            </div>
+            <h1 class="intro-section__title">
+                {{ section.settings.title }}
+            </h1>
+            {% if section.settings.button_url %}
+            <div class="intro-section__button">
+                <a href="{{ section.settings.button_url }}" class="btn btn--white btn--big btn--banner" tabindex="0">
+                    {{ section.settings.button_text }}
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% schema %}
+
+{
+  "name": "intro",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Main Intro Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "gradient",
+      "label": "gradient image"
+    },
+    {
+      "type": "image_picker",
+      "id": "wave",
+      "label": "wave image"
+    },
+    {
+      "type": "image_picker",
+      "id": "item-1",
+      "label": "1 item image"
+    },
+    {
+      "type": "image_picker",
+      "id": "item-2",
+      "label": "2 item image"
+    },
+    {
+      "type": "image_picker",
+      "id": "item-3",
+      "label": "3 item image"
+    },
+    {
+      "type": "header",
+      "content": "Information"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "The Next Wave in Vitamin Absorption.",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "default": "Shop Bundles",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button url",
+      "info": "Leave the link blank to hide the button."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Intro"
+    }
+  ]
+}
+
+
+
+{% endschema %}

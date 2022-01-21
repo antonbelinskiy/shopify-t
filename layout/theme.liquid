@@ -189,7 +189,9 @@
       }
     {% endstyle %}
 
-    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {% comment %}{{ 'base.css' | asset_url | stylesheet_tag }}{% endcomment %}
+    {{ 'custom-libs.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-theme.css' | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -207,16 +209,21 @@
       document.documentElement.classList.add('shopify-design-mode');
     }
     </script>
+    <script src="{{ 'jquery.js' |  asset_url }}"></script>
+    <script src="{{ 'custom-libs.js' |  asset_url }}"></script>
+    <script src="{{ 'custom-theme.js' |  asset_url }}"></script>
   </head>
 
   <body class="gradient">
-    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
-      {{ "accessibility.skip_to_text" | t }}
-    </a>
+  <div class="wrapper transparent-s">
+
+    {% comment %}<a class="skip-to-content-link button visually-hidden" href="#MainContent">{% endcomment %}
+      {% comment %}{{ "accessibility.skip_to_text" | t }}{% endcomment %}
+    {% comment %}</a>{% endcomment %}
 
     {% section 'announcement-bar' %}
     {% section 'header' %}
-    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+    <main id="MainContent" class="content-for-layout focus-none main" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
@@ -257,5 +264,7 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+  </div>
   </body>
 </html>

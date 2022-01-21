@@ -222,7 +222,8 @@
       "cart_count": {
         "one": "{{ count }} item",
         "other": "{{ count }} items"
-      }
+      },
+      "sign_in": "Login / sign up"
     },
     "cart": {
       "title": "Your cart",

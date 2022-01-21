@@ -1,0 +1,394 @@
+<section class="discover">
+    <div class="container">
+        <div class="discover__inner ">
+            <div class="section-header">
+                <div class="section-header__title">
+                    {{ section.settings.title }}
+                </div>
+                <div class="section-header__description mobile-hide">
+                    {{ section.settings.subtitle }}
+                </div>
+            </div>
+            <div class="discover__slider-wrap">
+                <div class="discover__slider js-discover-slider">
+                    {% for block in section.blocks %}
+                    <div>
+                        <div class="discover__grid">
+                            <div class="discover__grid-item">
+                                <div class="discover__text">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                         viewBox="0 0 550 140"  xml:space="preserve">
+											<path id="curve" d="M 0,100 C 40,100 80,80 110,50 C 150,10 280,10 330,50 S 500,100 550,50" stroke="transparent" fill="transparent"/>
+                                        <text>
+                                            <textPath id="text-path" href="#curve" startOffset="0" >
+                                                {{ block.settings.text-curve | prepend: ' " ' | append: ' " ' }}
+                                            </textPath>
+                                        </text>
+										</svg>
+                                </div>
+                                <div class="discover__image">
+                                    {% if block.settings.gradient-1 %}
+                                    <div class="discover__image__gradient--orange">
+                                        <img src="{{ block.settings.gradient-1 | img_url: "master" }}" alt="">
+                                    </div>
+                                    {% endif %}
+                                    {% if block.settings.gradient-2 %}
+                                    <div class="discover__image__gradient--violet">
+                                        <img src="{{ block.settings.gradient-2 | img_url: "master" }}" alt="">
+                                    </div>
+                                    {% endif %}
+                                    {% if block.settings.table-img %}
+                                    <div class="discover__image__table">
+                                        <img src="{{ block.settings.table-img | img_url: "master" }}" alt="">
+                                    </div>
+                                    {% endif %}
+                                    {% if block.settings.default-img %}
+                                    <div class="discover__image__img">
+                                        <img src="{{ block.settings.default-img | img_url: "master" }}" alt="">
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="discover__grid-item">
+                                <div class="discover__content">
+                                    {% if block.settings.slide-title %}
+                                    <div class="discover__content--title">
+                                        {{ block.settings.slide-title }}
+                                    </div>
+                                    {% endif %}
+                                    {% if block.settings.author != false %}
+                                    <div class="author discover__content--author">
+                                        {% if block.settings.author-img %}
+                                        <div class="author__image">
+                                            <img src="{{ block.settings.author-img | img_url: "master" }}" alt="{{ block.settings.author-img-alt }}">
+                                        </div>
+                                        {% endif %}
+                                        <div class="author__info">
+                                            <div class="author__name">{{ block.settings.author-name }}</div>
+                                            <div class="author__specialization">{{ block.settings.author-specialization }}</div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    <div class="discover__content--desc">
+                                        {{ block.settings.slide-text }}
+                                    </div>
+                                    <ul class="discover__content--list">
+                                        <li>
+                                            {% if block.settings.list-item_1-image %}
+                                            <img src="{{ block.settings.list-item_1-image | img_url: "master" }}" alt="{{ block.settings.list-item_1-image-alt }}">
+                                            {% endif %}
+                                            <div class="discover__content--list__title">
+                                                <a href="{{ block.settings.list-item_1-image-url }}">{{ block.settings.list-item_1-image-name }}</a> {{
+                                                    block.settings.list-item_1-image-text
+                                                }}
+                                            </div>
+                                        </li>
+                                        <li>
+                                            {% if block.settings.list-item_2-image %}
+                                                <img src="{{ block.settings.list-item_2-image | img_url: "master" }}" alt="{{ block.settings.list-item_2-image-alt }}">
+                                            {% endif %}
+                                            <div class="discover__content--list__title">
+                                                <a href="{{ block.settings.list-item_2-image-url }}">{{ block.settings.list-item_2-image-name }}</a> {{
+                                                block.settings.list-item_2-image-text
+                                                }}
+                                            </div>
+                                        </li>
+                                        <li>
+                                            {% if block.settings.list-item_3-image %}
+                                                <img src="{{ block.settings.list-item_3-image | img_url: "master" }}" alt="{{ block.settings.list-item_3-image-alt }}">
+                                            {% endif %}
+                                            <div class="discover__content--list__title">
+                                                <a href="{{ block.settings.list-item_3-image-url }}">{{ block.settings.list-item_3-image-name }}</a> {{
+                                                block.settings.list-item_3-image-text
+                                                }}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="discover__slider-arrow">
+
+                </div>
+            </div>
+            <div class="section-header__description desktop-hide">
+                {{ section.settings.subtitle }}
+            </div>
+            {% if section.settings.button_url %}
+            <div class="btn-wrap--center discover-btn-wrap">
+                <a href="{{ section.settings.button_url }}" class="btn">{{ section.settings.button_text }}</a>
+            </div>
+            {% endif %}
+            <div class="powered powered--center">
+                <div class="powered__title">
+                    {{ section.settings.powered-title }}
+                </div>
+                <a href="{{ section.settings.powered-url }}" target="_blank" class="powered__logo">
+                    <img src="{{ section.settings.powered-img | img_url:"master" }}" alt="{{ section.settings.powered-img-alt }}">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "discover",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "title",
+      "default": "Discover Your Solution"
+    },
+    {
+      "type": "text",
+      "label": "Subtitle",
+      "id": "subtitle",
+      "default": "Take our <b>4-Minute Quiz</b> to get doctor &amp; nutritionist recommended, custom solutions."
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "default": "Take the Quiz",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button url",
+      "info": "Leave the link blank to hide the button"
+    },
+    {
+      "type": "text",
+      "id": "powered-title",
+      "label": "Powered by title",
+      "default": "Powered By:"
+    },
+    {
+      "type": "url",
+      "id": "powered-url",
+      "label": "Powered url",
+      "info": "Leave the link blank to not add link"
+    },
+    {
+      "type": "image_picker",
+      "id": "powered-img",
+      "label": "Powered by image"
+    },
+    {
+      "type": "text",
+      "id": "powered-img-alt",
+      "label": "Powered by image alt",
+      "default": "Logo"
+    }
+      ],
+  "blocks": [
+    {
+      "type": "discover_slide",
+      "name": "Discover Slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Discover slide images"
+        },
+        {
+          "type": "text",
+          "id": "text-curve",
+          "label": "Item Curve text"
+        },
+        {
+          "type": "image_picker",
+          "label": "Gradient 1",
+          "id":  "gradient-1"
+        },
+        {
+          "type": "image_picker",
+          "label": "Gradient 2",
+          "id":  "gradient-2"
+        },
+        {
+          "type": "image_picker",
+          "label": "Table Image",
+          "id":  "table-img"
+        },
+        {
+          "type": "image_picker",
+          "label": "Default Image",
+          "id":  "default-img"
+        },
+        {
+          "type": "header",
+          "content": "Slide info"
+        },
+        {
+          "type": "text",
+          "id": "slide-title",
+          "label": "Slide title",
+          "default": "Jon’s Custom Nutrition Solution"
+        },
+        {
+          "type": "header",
+          "content": "Author info"
+        },
+        {
+          "type": "checkbox",
+          "id": "author",
+          "label": "Show author",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "author-img",
+          "label": "Author Image"
+        },
+        {
+          "type": "text",
+          "id": "author-img-alt",
+          "label": "Author Image Alt",
+          "default": "Author name"
+        },
+        {
+          "type": "text",
+          "id": "author-name",
+          "label": "Author Name",
+          "default": "Dr.Name Here"
+        },
+        {
+          "type": "text",
+          "id": "author-specialization",
+          "label": "Author specialization",
+          "default": "MD, PHD"
+        },
+        {
+          "type": "header",
+          "content": "Slide content"
+        },
+        {
+          "type": "textarea",
+          "id": "slide-text",
+          "label": "Slide text",
+          "default": "Jon, it sounds like you need more sun, and you’re having issues with your immunity. Here are some recommendations:"
+        },
+        {
+          "type": "header",
+          "content": "Slide content list"
+        },
+        {
+          "type": "header",
+          "content": "First list item"
+        },
+        {
+          "type": "image_picker",
+          "label": "1 list item image",
+          "id":  "list-item_1-image"
+        },
+        {
+          "type": "text",
+          "label": "1 list item image alt",
+          "id":  "list-item_1-image-alt",
+          "default": "Vitamin B12"
+        },
+        {
+          "type": "text",
+          "label": "1 list item name",
+          "id":  "list-item_1-image-name",
+          "default": "Vitamin B12"
+        },
+        {
+          "type": "url",
+          "label": "1 list item link",
+          "id":  "list-item_1-image-url"
+        },
+        {
+          "type": "text",
+          "id":  "list-item_1-image-text",
+          "label": "1 list item text",
+          "default": "for healthy & blood cells",
+          "info": "Begins with small letter"
+        },
+        {
+          "type": "header",
+          "content": "Second list item"
+        },
+        {
+          "type": "image_picker",
+          "label": "2 list item image",
+          "id":  "list-item_2-image"
+        },
+        {
+          "type": "text",
+          "label": "2 list item image alt",
+          "id":  "list-item_2-image-alt",
+          "default": "Vitamin B12"
+        },
+        {
+          "type": "text",
+          "label": "2 list item name",
+          "id":  "list-item_2-image-name",
+          "default": "Vitamin B12"
+        },
+        {
+          "type": "url",
+          "label": "2 list item link",
+          "id":  "list-item_2-image-url"
+        },
+        {
+          "type": "text",
+          "id":  "list-item_2-image-text",
+          "label": "2 list item text",
+          "default": "for healthy & blood cells",
+          "info": "Begins with small letter"
+        },
+        {
+          "type": "header",
+          "content": "Third list item"
+        },
+        {
+          "type": "image_picker",
+          "label": "3 list item image",
+          "id":  "list-item_3-image"
+        },
+        {
+          "type": "text",
+          "label": "3 list item image alt",
+          "id":  "list-item_3-image-alt",
+          "default": "Vitamin B12"
+        },
+        {
+          "type": "text",
+          "label": "3 list item name",
+          "id":  "list-item_3-image-name",
+          "default": "Vitamin B12"
+        },
+        {
+          "type": "url",
+          "label": "3 list item link",
+          "id":  "list-item_3-image-url"
+        },
+        {
+          "type": "text",
+          "id":  "list-item_3-image-text",
+          "label": "3 list item text",
+          "default": "for healthy & blood cells",
+          "info": "Begins with small letter"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Discover"
+    }
+  ]
+}
+{% endschema %}
