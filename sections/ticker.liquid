@@ -1,0 +1,48 @@
+
+<div class="ticker__viewport">
+    <ul class="ticker__list" data-ticker="list">
+        {% for block in section.blocks %}
+        <li class="ticker__item" data-ticker="item">{{ block.settings.item-text }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% schema %}
+{
+  "name": "ticker",
+  "blocks": [
+    {
+      "type": "ticker_item",
+      "name": "Ticker item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Ticker item"
+        },
+        {
+          "type": "text",
+          "id": "item-text",
+          "label": "Ticker item text",
+          "default": "Adasdadasdasd"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ticker",
+      "blocks": [
+        {
+          "type": "ticker_item"
+        },
+        {
+          "type": "ticker_item"
+        },
+        {
+          "type": "ticker_item"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

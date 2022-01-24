@@ -1,0 +1,121 @@
+<section class="doctor-single">
+
+    {% if section.settings.doctor-background %}
+    <div class="doctor-single__background-image">
+        <picture>
+            <img src="{{ section.settings.doctor-background | img_url:"master" }}" alt="{{ section.settings.doctor-background-alt }}">
+        </picture>
+    </div>
+    {% else %}
+    <div class="doctor-single__background-image" style="background-color: #F6F5F5">
+
+    </div>
+    {% endif %}
+    <div class="container">
+        <div class="doctor-single__inner-wrapper">
+            <div class="doctor-single__content">
+                <div class="doctor-single__subtitle">
+                  {{ section.settings.subtitle }}
+                </div>
+                <h1 class="doctor-single__title">
+                    {{ section.settings.title }}
+                </h1>
+                <div class="doctor-single__text">
+                    {{ section.settings.text }}
+                </div>
+                {% if section.settings.button_url %}
+                <div class="doctor-single__button">
+                    <a href="{{ section.settings.button_url }}" class="btn btn--secondary" tabindex="0">
+                        {{ section.settings.button_text }} <i class="icon icon-i-arrow-right"></i>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="doctor-single__image">
+                <picture>
+                    <source srcset="{{ section.settings.doctor-image | img_url:"master"}}" media="(min-width: 768px)">
+                    <img src="{{ section.settings.doctor-image-mobile | img_url:"master"}}" alt="{{ section.settings.doctor-image-alt }}">
+                </picture>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+"name": "Doctor Single",
+  "settings":[
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "label": "Background Image",
+      "id": "doctor-background",
+      "info": "not necessary\n"
+    },
+    {
+      "type": "text",
+      "label": "Background Image Alt",
+      "id": "doctor-background-alt"
+    },
+    {
+      "type": "image_picker",
+      "label": "Doctor Image",
+      "id": "doctor-image"
+    },
+    {
+      "type": "image_picker",
+      "label": "Doctor Image Mobile",
+      "id": "doctor-image-mobile"
+    },
+    {
+      "type": "text",
+      "label": "Doctor Image Alt",
+      "id": "doctor-image-alt"
+    },
+    {
+      "type": "header",
+      "content": "Section Content"
+    },
+    {
+      "type": "text",
+      "label": "Subtitle",
+      "id": "subtitle",
+      "default": "Meet The Founder"
+    },
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "title",
+      "default": "Dr. Mallory Blair, PhD\n"
+    },
+    {
+      "type": "text",
+      "label": "Text",
+      "id": "text",
+      "default": "Scientist, professor - and mom of two - Dr. Blair’s innovations live at the intersection of\nnutrition, microfluidics, and biochemistry."
+    },
+    {
+      "type": "header",
+      "content": "button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Get To know mallory"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button Url"
+    }
+  ],
+  "presets": [{
+    "name": "Doctor Single"
+  }
+  ]
+}
+{% endschema %}
