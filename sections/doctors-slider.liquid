@@ -1,0 +1,180 @@
+<section class="doctors">
+    <div class="container">
+        <div class="doctors__inner">
+            <div class="section-header">
+                <div class="section-header__subtitle">
+                    {{ section.settings.subtitle }}
+                </div>
+                <div class="section-header__title">
+                    {{ section.settings.title }}
+                </div>
+                <div class="section-header__description">
+                    {{ section.settings.descriprion }}
+                </div>
+            </div>
+            {% assign block_size = section.blocks | size %}
+            <div class="doctors__grid-wrap">
+                <div class="grid {% if block_size > 4 %} js-doctors-slider {% endif %}">
+                    {% for block in section.blocks %}
+                    <div class="grid__item grid__item--25 doctors__item">
+                        <div class="doctors__image">
+                            <img src="{{ block.settings.page.metafields.doctor.img }}" alt="doctor_1">
+                            <div data-toggle="modal" data-target="#doctors_modal" class="el-plus js-el-plus"><span>+</span></div>
+
+                        </div>
+                        <div class="doctors__content">
+                            <div class="doctors__name">
+                                {{ block.settings.page.metafields.doctor.name }}
+                            </div>
+                            <div class="doctors__specialization">
+                                {{ block.settings.page.metafields.doctor.specialization }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="doctors__slider-arrow"></div>
+            </div>
+            <div class="btn-wrap btn-wrap--center">
+                <a href="{{ section.settings.button_url }}" class="btn  btn--secondary">
+                    <span class="mobile-hide">{{ section.settings.button-desktop }}</span>
+                    <span class="desktop-hide">{{ section.settings.button-mobile }}</span>
+                    <i
+                            class="icon icon-i-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade doctors_modal" id="doctors_modal" tabindex="-1" role="dialog"
+     aria-labelledby="doctors_modalTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content trending-modal__inner">
+            <div class="modal-header">
+                <h5 class="modal-title trending__title">Doctors & Nutritionists</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">
+							<i class="icon icon-i-close"></i>
+						</span>
+                </button>
+            </div>
+            <div class="modal-body doctors-modal__content">
+                <div class="doctors__grid-wrap doctors-modal__slider-wrap">
+                    <div class="doctors-modal__slider js-modal-doctors-slider">
+                        {% for block in section.blocks %}
+                        {% if  block.settings.page.title != blank %}
+                        <div>
+                            <div class="grid__item doctors__item">
+                                <div class="doctors__image">
+                                    <img src="{{ block.settings.page.metafields.doctor.img }}" alt="doctor_1">
+                                </div>
+                                <div class="doctors__content">
+                                    <div class="doctors__name">
+                                        {{ block.settings.page.metafields.doctor.name }}
+                                    </div>
+                                    <div class="doctors__specialization">
+                                        {{ block.settings.page.metafields.doctor.specialization }}
+                                    </div>
+                                    <div class="doctors__desc">
+                                        {{ block.settings.page.metafields.doctor.description }}
+                                    </div>
+                                    <div class="doctors__position-title">
+                                        Core Focus:
+                                    </div>
+                                    <div class="doctors__position">
+                                        {{ block.settings.page.metafields.doctor.core-focus }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-wrap btn-wrap--center">
+                                <a href="    {{ block.settings.page.metafields.doctor.url }}" class="btn  btn--secondary">
+                                    <span>read more</span>
+                                    <i class="icon icon-i-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="doctors-modal__slider-arrow"></div>
+                    <div class="doctors-modal__slider-dots"></div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Doctors slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section settings"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section subtitle",
+      "default": "2x4 Experts"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Doctors & Nutritionists"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Section description",
+      "default": "Get advice from our team of in-house formulation experts on the best solutions for you."
+    },
+    {
+      "type": "header",
+      "content": "Popup Link"
+    },
+    {
+      "type": "text",
+      "id": "button_url",
+      "label": "Button url"
+    },
+    {
+      "type": "text",
+      "id": "button-desktop",
+      "label": "Desktop button text",
+      "default": "Meet the 2x4 team"
+    },
+    {
+      "type": "text",
+      "id": "button-mobile",
+      "label": "Mobile button text",
+      "default": "Meet the 2x4 team"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "doctors",
+      "name": "Doctors",
+      "settings": [
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Doctors slider"
+    }
+  ]
+}
+
+
+{% endschema %}
